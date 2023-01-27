@@ -12,7 +12,9 @@ public class testing : MonoBehaviour
 
         inputLine = "d \"this is some text\"";
         InputDecoder.ParseInputLine(inputLine);
-        
+
+        inputLine = "show bg_1";
+        InputDecoder.ParseInputLine(inputLine);
 
     }
 }
