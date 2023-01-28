@@ -17,4 +17,20 @@ public class testing : MonoBehaviour
         InputDecoder.ParseInputLine(inputLine);
 
     }
+
+    void Update()
+    {
+
+    if (Input.GetMouseButtonDown(0))
+        {
+            if(InputDecoder.InterfaceElements.activeInHierarchy)
+            {
+                InputDecoder.InterfaceElements.SetActive(false);
+            }
+            else{
+                InputDecoder.InterfaceElements.SetActive(true);
+            }
+        }
+
+    }
 }

@@ -10,6 +10,8 @@ public class InputDecoder
 {
     public static List<Character> CharacterList = new List<Character>();
 
+    public static GameObject InterfaceElements = GameObject.Find("UIElements");
+
     //find and define the bachdround image
     private static GameObject Background = GameObject.Find("Background");
     private static Image BackgroundImage = Background.GetComponent<Image>();
