@@ -46,6 +46,11 @@ public class InputDecoder
         {
             ClearScreen();
         }
+
+        if(args[0] == "Character")
+        {
+            CreateNewCharacter(StringToParse);
+        }
     }
 
     #region Say Stuff
@@ -89,6 +94,53 @@ public class InputDecoder
 
     #endregion
 
+    #region 
+
+    public static void CreateNewCharacter(string StringToParse)
+    {
+        string newCharShortName = null;
+        string newCharFulName = null;
+        Color newCharColor = Color.white;
+        string newCharSideImage = null;
+
+        var CharacterExpression = new Regex(@"Character\((?<shortName>[a-zA-Z0-9_]+), (?<fullName>[a-zA-Z0-9_]+), color=(?<characterColor>[a-zA-Z0-9_]+), image=(?<sideImage>[a-zA-Z0-9_]+)\)");
+        var CharacterExpressionA = new Regex(@"Character\((?<shortName>[a-zA-Z0-9_]+), (?<fullName>[a-zA-Z0-9_]+), color=(?<characterColor>[a-zA-Z0-9_]+)\)");
+        var CharacterExpressionB = new Regex(@"Character\((?<shortName>[a-zA-Z0-9_]+), (?<fullName>[a-zA-Z0-9_]+)\)");
+        var CharacterExpressionC = new Regex(@"Character\((?<shortName>[a-zA-Z0-9_]+), (?<fullName>[a-zA-Z0-9_]+),  image=(?<sideImage>[a-zA-Z0-9_]+)\)");
+
+        if(CharacterExpression.IsMatch(StringToParse))
+        {
+            var matches = CharacterExpression.Match(StringToParse);
+            newCharShortName = matches.Groups["shortName"].ToString();
+            newCharFulName = matches.Groups["fullName"].ToString();
+            newCharColor = Color.clear; ColorUtility.TryParseHtmlString(matches.Groups["characterColor"].ToString(), out newCharColor);
+            newCharSideImage = matches.Groups["sideImage"].ToString();
+        }
+        else if(CharacterExpressionA.IsMatch(StringToParse))
+        {
+            var matches = CharacterExpression.Match(StringToParse);
+            newCharShortName = matches.Groups["shortName"].ToString();
+            newCharFulName = matches.Groups["fullName"].ToString();
+            newCharColor = Color.clear; ColorUtility.TryParseHtmlString(matches.Groups["characterColor"].ToString(), out newCharColor);
+        }
+        else if(CharacterExpressionB.IsMatch(StringToParse))
+        {
+            var matches = CharacterExpression.Match(StringToParse);
+            newCharShortName = matches.Groups["shortName"].ToString();
+            newCharFulName = matches.Groups["fullName"].ToString();
+        }
+        else if(CharacterExpressionC.IsMatch(StringToParse))
+        {
+            var matches = CharacterExpression.Match(StringToParse);
+            newCharShortName = matches.Groups["shortName"].ToString();
+            newCharFulName = matches.Groups["fullName"].ToString();
+            newCharSideImage = matches.Groups["sideImage"].ToString();
+        }
+
+        CharacterList.Add(new Character(newCharShortName,newCharFulName,newCharColor,newCharSideImage));
+    }
+
+    #endregion
 
 
 

@@ -10,6 +10,9 @@ public class testing : MonoBehaviour
         
         InputDecoder.CharacterList.Add( new Character("d", "Dipper", Color.blue, "dipper_1.png"));
 
+        inputLine = "Character(d, Dipper, color=red, image=Dipper)";
+        InputDecoder.ParseInputLine(inputLine);
+
         inputLine = "d \"this is some text\"";
         InputDecoder.ParseInputLine(inputLine);
 
